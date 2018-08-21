@@ -1,0 +1,15 @@
+<div>
+    <div id="mainGrid">
+        <div class="heroContainer" *ngFor="let hero of heroes" (click)="viewDetail(hero)">
+            <div class="heroPicture">
+                <img src="{{hero._picture}}" title="{{hero._name}}" height="42" width="42">
+            </div>
+            <div class="heroInfo">
+                <div class="heroPosition"></div>
+                <span class="heroNickname">{{hero._nickname}}</span>
+                <span class="heroName">{{hero._name}}</span>
+                <span class="heroHeight">{{hero._height}}</span>
+            </div>
+        </div>
+    </div>
+</div>
