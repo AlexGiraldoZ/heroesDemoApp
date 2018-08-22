@@ -32,6 +32,8 @@
     "@angular/platform-browser": "5.2.10",
     "@angular/platform-browser-dynamic": "5.2.10",
     "@angular/router": "5.2.10",
+    "@ngrx/entity": "5.2.0",
+    "@ngrx/store": "5.0.0",
     "core-js": "^2.5.7",
     "html-loader": "^0.5.5",
     "jquery": "^3.3.1",
