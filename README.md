@@ -7,9 +7,14 @@ IMPORTANT: Please make sure you have installed:
   - npm >5.6.0 (https://github.com/npm/npm/releases/tag/v5.6.0)
   - yarn >1.9.4 (https://yarnpkg.com/lang/en/)
 
-Once you have those ones running correctly, please download and unzip the files:
+Once you have those ones running correctly, please download and unzip the files.
 
-and then, just run:
+Go to the root folder and run:
+```shell
+yarn install
+```
+
+Wait until the packages building process finished and then, just run:
 ```shell
 yarn start
 ```
