@@ -15,7 +15,6 @@ export class HeroesComponent {
         this.heroesDataService.getHeroes().subscribe(
             (result) => {
                 this.heroes = result;
-                console.log(this.heroes);
             },
         );
     }
