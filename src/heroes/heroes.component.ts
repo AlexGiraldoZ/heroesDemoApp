@@ -4,7 +4,7 @@ import { Observable } from "rxjs/Observable";
 import { IHeroInfo } from "../models/heroe.model";
 import { HeroesDataService } from "../services/heroes-data.service";
 import * as fromActions from "../store/actions/heroe.actions";
-import { IHeroState, selectHeroes } from "../store/reducers/heroe.reducers";
+import { getHeroes, IHeroState} from "../store/reducers/heroe.reducers";
 
 const FEET_TO_CMS_CONVERSOR = 30.48;
 
@@ -16,7 +16,6 @@ const FEET_TO_CMS_CONVERSOR = 30.48;
 
 export class HeroesComponent {
 
-    message = "Top heroes";
     heroes: IHeroInfo[];
     heroes$: Observable<IHeroInfo[]>;
     constructor(
@@ -29,10 +28,9 @@ export class HeroesComponent {
             (result) => {
                 this.heroes = result;
                 this.loadHeroes(this.prepareData(this.heroes));
-                console.log(this.heroes$);
             },
         );
-        this.heroes$ = this.store.select(selectHeroes);
+        this.heroes$ = this.store.select(getHeroes);
     }
 
     private loadHeroes(data: IHeroInfo[]) {

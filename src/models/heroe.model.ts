@@ -1,6 +1,6 @@
 export interface IHeroInfo {
-    height: string;
     id: number;
+    height: string;
     name: string;
     nickname: string;
     picture: string;

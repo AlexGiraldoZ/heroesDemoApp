@@ -5,9 +5,7 @@ import { HeroActions, HeroActionTypes } from "../actions/heroe.actions";
 
 export interface IHeroState extends EntityState<IHeroInfo> {}
 
-export const adapter: EntityAdapter<IHeroInfo> = createEntityAdapter<IHeroInfo>({
-    sortComparer: false,
-});
+export const adapter: EntityAdapter<IHeroInfo> = createEntityAdapter<IHeroInfo>();
 
 const initialState: IHeroState = adapter.getInitialState();
 
@@ -29,8 +27,8 @@ export function reducer(state: IHeroState = initialState, action: HeroActions): 
 }
 
 // get the selectors
-const { selectAll: selectAllHeroes } = adapter.getSelectors();
+const { selectAll: selectHeroes } = adapter.getSelectors();
 
 export const selectHeroesState = createFeatureSelector<EntityState<IHeroInfo>>("heroes");
 
-export const selectHeroes = createSelector( selectHeroesState, selectAllHeroes );
+export const getHeroes = createSelector( selectHeroesState, selectHeroes );
