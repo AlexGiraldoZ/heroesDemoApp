@@ -27,8 +27,10 @@ export function reducer(state: IHeroState = initialState, action: HeroActions): 
 }
 
 // get the selectors
-const { selectAll: selectHeroes } = adapter.getSelectors();
+const { selectEntities: selectHero, selectAll: selectHeroes } = adapter.getSelectors();
 
 export const selectHeroesState = createFeatureSelector<EntityState<IHeroInfo>>("heroes");
 
 export const getHeroes = createSelector( selectHeroesState, selectHeroes );
+
+export const getHero = createSelector( selectHeroesState, selectHero );

@@ -1,26 +1,28 @@
 import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs/Observable";
-import { IHeroInfo } from "../models/heroe.model";
-import { HeroesDataService } from "../services/heroes-data.service";
-import * as fromActions from "../store/actions/heroe.actions";
-import { getHeroes, IHeroState} from "../store/reducers/heroe.reducers";
+import { IHeroInfo } from "../../models/heroe.model";
+import { HeroesDataService } from "../../services/heroes-data.service";
+import * as fromActions from "../../store/actions/heroe.actions";
+import { getHeroes, IHeroState} from "../../store/reducers/heroe.reducers";
 
 const FEET_TO_CMS_CONVERSOR = 30.48;
 
 @Component({
     selector: "heroes-app",
-    styles: [ require("./heroes.component.scss") ],
-    template: require("./heroes.component.html"),
+    styles: [ require("./heroes-list.component.scss") ],
+    template: require("./heroes-list.component.html"),
 })
 
-export class HeroesComponent {
+export class HeroesListComponent {
 
     heroes: IHeroInfo[];
     heroes$: Observable<IHeroInfo[]>;
     constructor(
         private heroesDataService: HeroesDataService,
         private store: Store<IHeroState>,
+        private router: Router,
     ) {}
 
     ngOnInit() {
@@ -32,6 +34,10 @@ export class HeroesComponent {
         );
         this.heroes$ = this.store.select(getHeroes);
     }
+
+    viewDetails(hero: IHeroInfo) {
+        this.router.navigate(["../hero", hero.id]);
+      }
 
     private loadHeroes(data: IHeroInfo[]) {
         this.store.dispatch(new fromActions.LoadHeroes({heroes: data}));

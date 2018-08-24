@@ -1,6 +1,6 @@
 <div id="mainContainer">
     <div id="mainGrid">
-        <div class="heroContainer" *ngFor="let hero of heroes$ | async" (click)="viewDetail(hero)">
+        <div class="heroContainer" *ngFor="let hero of heroes$ | async" (click)="viewDetails(hero)">
             <div class="heroPicture">
                 <img src="{{hero.picture}}" title="{{hero.name}}" >
             </div>
