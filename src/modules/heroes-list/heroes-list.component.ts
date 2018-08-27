@@ -17,7 +17,6 @@ const FEET_TO_CMS_CONVERSOR = 30.48;
 
 export class HeroesListComponent {
 
-    heroes: IHeroInfo[];
     heroes$: Observable<IHeroInfo[]>;
     constructor(
         private heroesDataService: HeroesDataService,
@@ -28,8 +27,7 @@ export class HeroesListComponent {
     ngOnInit() {
         this.heroesDataService.getHeroes().subscribe(
             (result) => {
-                this.heroes = result;
-                this.loadHeroes(this.prepareData(this.heroes));
+                this.loadHeroes(this.prepareData(result));
             },
         );
         this.heroes$ = this.store.select(getHeroes);
@@ -59,7 +57,7 @@ export class HeroesListComponent {
 
     private convertToMetricSystem(height: number) {
         const cms = (height * FEET_TO_CMS_CONVERSOR) / 100;
-        return (Math.round(cms * 100) / 100).toFixed(2) + "mt";
+        return (Math.round(cms * 100) / 100).toFixed(2);
     }
 
     private transformToOrdinal(index: number) {

@@ -5,6 +5,7 @@ import { IHeroInfo } from "../../models/heroe.model";
 export enum HeroActionTypes {
     LOAD_HEROES = "[Hero] Load Heroes",
     UPDATE_HERO = "[Hero] Update Hero",
+    SELECT_HERO = "[Hero] Select Hero",
   }
 
 export class LoadHeroes implements Action {

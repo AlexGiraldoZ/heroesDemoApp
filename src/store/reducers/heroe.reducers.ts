@@ -25,12 +25,13 @@ export function reducer(state: IHeroState = initialState, action: HeroActions): 
         }
     }
 }
+export const getSelectedHero = (state: IHeroInfo[], id: number) => state[id];
 
 // get the selectors
-const { selectEntities: selectHero, selectAll: selectHeroes } = adapter.getSelectors();
+const { selectAll: selectAllHeroes } = adapter.getSelectors();
 
 export const selectHeroesState = createFeatureSelector<EntityState<IHeroInfo>>("heroes");
 
-export const getHeroes = createSelector( selectHeroesState, selectHeroes );
+export const getHeroes = createSelector( selectHeroesState, selectAllHeroes );
 
-export const getHero = createSelector( selectHeroesState, selectHero );
+export const getHero = (id: number) => createSelector( getHeroes, (state) => state[id] );

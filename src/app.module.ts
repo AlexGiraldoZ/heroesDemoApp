@@ -1,6 +1,6 @@
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule, Routes } from "@angular/router";
 import { StoreModule } from "@ngrx/store";
@@ -35,9 +35,9 @@ const appRoutes: Routes = [
     bootstrap:      [AppComponent],
     declarations:   [AppComponent, HeroesListComponent, HeroesDetailsComponent],
     imports:        [
-        RouterModule.forRoot(appRoutes, { enableTracing: true }),
+        RouterModule.forRoot(appRoutes),
         BrowserModule,
-        FormsModule,
+        ReactiveFormsModule,
         HttpClientModule,
         StoreModule.forRoot({}),
         StoreModule.forFeature("heroes", fromReducers.reducer),
