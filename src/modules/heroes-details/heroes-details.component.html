@@ -1,19 +1,21 @@
-<div id="mainContainer">
-    <div class="heroContainer">
-        <div *ngIf="(hero$ | async); else loading" class="heroPosition">
-            <div class="heroPicture">
+<div class="mainDetailsContainer">
+    <div class="heroDetailsContainer">
+        <div *ngIf="(hero$ | async); else loading">
+            <div class="heroDetailsPicture">
                 <img src="{{ (hero$ | async).picture }}" title="{{ (hero$ | async).name }}" >
             </div>
 
-            <div class="heroInfo">
-                <form [formGroup]="form">
-                    <label>Nickname:</label>
-                    <input type="text" formControlName="nickname"><br>
-                    <label>Name:</label>
-                    <input type="text" formControlName="name" value="{{ (hero$ | async).name }}"><br>
-                    <label>Estatura:</label> 
-                    <input type="text" formControlName="height" value="{{ (hero$ | async).height }}"><span>mt</span><br>
-                    <button (click)="returnToList()" [disabled]="!form.valid">Return</button>
+            <div class="heroDetailsInfo">
+                <form class="formHeroDetails" [formGroup]="form">
+                    <label class="heroDetailsLabel">Nickname:</label>
+                    <input class="heroDetailsInput heroDetailsNickname" type="text" formControlName="nickname">
+                    <label class="heroDetailsLabel">Name:</label>
+                    <input class="heroDetailsInput" type="text" formControlName="name">
+                    <label class="heroDetailsLabel">Estatura:</label> 
+                    <div class="heroHeight">
+                        <input class="heroDetailsInputSmall" type="text" formControlName="height"><span class="metricSystem">mt</span>
+                    </div>
+                    <button class="heroDetailsSubmit" type="submit" (click)="returnToList()" [disabled]="!form.valid">Update</button>
                 </form>
             </div>
         </div>

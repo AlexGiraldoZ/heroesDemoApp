@@ -13,7 +13,7 @@ export function reducer(state: IHeroState = initialState, action: HeroActions): 
     switch (action.type) {
 
         case HeroActionTypes.UPDATE_HERO: {
-            return adapter.updateOne(action.payload.heroe, state);
+            return adapter.updateOne(action.payload.hero, state);
         }
 
         case HeroActionTypes.LOAD_HEROES: {

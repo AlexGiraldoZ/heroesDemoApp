@@ -16,7 +16,7 @@ const FEET_TO_CMS_CONVERSOR = 30.48;
 })
 
 export class HeroesListComponent {
-
+    heroes: IHeroInfo[];
     heroes$: Observable<IHeroInfo[]>;
     constructor(
         private heroesDataService: HeroesDataService,
@@ -25,12 +25,17 @@ export class HeroesListComponent {
     ) {}
 
     ngOnInit() {
-        this.heroesDataService.getHeroes().subscribe(
-            (result) => {
-                this.loadHeroes(this.prepareData(result));
-            },
-        );
-        this.heroes$ = this.store.select(getHeroes);
+        this.store.select(getHeroes).subscribe((data: any) => {
+            if (!data.length) {
+                this.heroesDataService.getHeroes().subscribe(
+                    (result) => {
+                        this.loadHeroes(this.prepareData(result));
+                        this.heroes = this.prepareData(result);
+                    },
+                );
+            }
+            this.heroes = data;
+        });
     }
 
     viewDetails(hero: IHeroInfo) {

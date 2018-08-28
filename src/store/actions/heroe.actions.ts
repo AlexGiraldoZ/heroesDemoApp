@@ -18,7 +18,7 @@ export class LoadHeroes implements Action {
 export class UpdateHero implements Action {
     readonly type = HeroActionTypes.UPDATE_HERO;
 
-    constructor(public payload: { heroe: Update<IHeroInfo> }) {}
+    constructor(public payload: { hero: Update<IHeroInfo> }) {}
 }
 
 export type HeroActions = LoadHeroes | UpdateHero;
