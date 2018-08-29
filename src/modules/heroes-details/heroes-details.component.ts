@@ -6,7 +6,7 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs/Observable";
 import { IHeroInfo } from "../../models/heroe.model";
 import * as fromActions from "../../store/actions/heroe.actions";
-import { getHero, getHeroes, IHeroState} from "../../store/reducers/heroe.reducers";
+import { getHero, IHeroState} from "../../store/reducers/heroe.reducers";
 
 @Component({
     selector: "heroes-app",
@@ -40,9 +40,9 @@ export class HeroesDetailsComponent {
         const heroId = parseInt(this.route.snapshot.paramMap.get("id"), 10);
         this.hero$ = this.store.select(getHero(heroId));
         this.hero$.subscribe((heroValue) => {
-            this.form.controls["height"].setValue(heroValue.height);
-            this.form.controls["name"].setValue(heroValue.name);
-            this.form.controls["nickname"].setValue(heroValue.nickname);
+            this.form.controls[ "height" ].setValue(heroValue.height);
+            this.form.controls[ "name" ].setValue(heroValue.name);
+            this.form.controls[ "nickname" ].setValue(heroValue.nickname);
         });
         this.heroToUpdate = { id: heroId, changes: {} };
         this.form.valueChanges.subscribe((value) => {
