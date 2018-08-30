@@ -9,6 +9,9 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.ts']
     },
+    node: {
+        fs: 'empty'
+      },
     mode: 'development',
     output: {
         path: path.resolve(__dirname, 'src/dist'), // output directory
@@ -28,14 +31,19 @@ module.exports = {
                 test: /\.scss$/,
                 loader: ["raw-loader", "sass-loader?sourceMap"]
             },
-            {
+            {       
                 test: /\.ts$/,
                 enforce: "pre",
                 loader: 'tslint-loader'
-            },
+            },                              
             {
                 test: /\.html$/,
                 loader: "html-loader"
+            }, 
+            {
+                test: /\.js$/,
+                exclude: path.resolve(__dirname, 'node_modules'),
+                loader: 'babel-loader'
             }
         ]
     },
@@ -45,7 +53,7 @@ module.exports = {
             inject : "body"
         })
     ],
-    devtool: "source-map",
+    devtool: "inline-source-map",
     devServer: {
         historyApiFallback: true
     }
