@@ -18,15 +18,21 @@ var config = {
             {
                 test: /\.ts$/,
                 loader: "ts-loader",
+            },
+            {
+                test: /\.js$/,
                 exclude: path.resolve(__dirname, 'node_modules'),
-                include: path.resolve(__dirname, 'src'),
-            },                              
+                loader: 'babel-loader'
+            },                          
             {
                 test: /\.html$/,
                 loader: "html-loader"
             }, 
         ]
     },
+    devServer: {
+        historyApiFallback: true
+    }
 }
 
 module.exports = config;

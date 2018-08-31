@@ -11,7 +11,9 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'chai', 'sinon'],
+    frameworks: ['polyfill', 'mocha', 'chai', 'sinon'],
+
+    polyfill: ['Promise', 'Map', 'WeakMap', 'zone'],
 
     // list of files / patterns to load in the browser
     files: [
@@ -20,6 +22,8 @@ module.exports = function(config) {
 
     // list of files / patterns to exclude
     exclude: [
+      './node_modules',
+      './src/dist'
     ],
 
     // preprocess matching files before serving them to the browser

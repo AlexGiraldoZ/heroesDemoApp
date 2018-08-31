@@ -1,14 +1,23 @@
  {
-    "compilerOptions": {
-      "module": "commonjs",
-      "target": "es5",
-      "moduleResolution": "node",
-  
-      "experimentalDecorators": true,
-      "emitDecoratorMetadata": true,
-      "lib": [ "es6", "dom" ],
-      "noImplicitAny": true,
-      "sourceMap": true,
-      "suppressImplicitAnyIndexErrors": true
-    }
-  }
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "moduleResolution": "node",
+
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "lib": [ "dom", "es5", "es2015.promise", "es2015.collection", "es2015.iterable" ],
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "suppressImplicitAnyIndexErrors": true,
+
+    "noEmitHelpers": true,
+    "importHelpers": true,
+    "skipLibCheck": true,
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": ["node_modules"],
+
+}

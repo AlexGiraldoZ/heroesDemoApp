@@ -6,7 +6,8 @@
     "jsRules": {},
     "rules": {
         "member-access": false,
-        "eofline": false
+        "eofline": false,
+        "ordered-imports": false
     },
     "rulesDirectory": []
 }

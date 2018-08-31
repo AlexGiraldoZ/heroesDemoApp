@@ -1,5 +1,5 @@
-$transparent_white: #ffffffbb;
-$transparent_red:  #ff0000aa;
+$transparent_white: "unquote('#ffffffbb')";
+$transparent_red: "unquote('#ff0000aa')";
 
 .mainContainer {
     background-image: url("../src/assets/background.jpg");
