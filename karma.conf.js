@@ -13,10 +13,17 @@ module.exports = function(config) {
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['polyfill', 'mocha', 'chai', 'sinon'],
 
-    polyfill: ['Promise', 'Map', 'WeakMap', 'zone'],
+    polyfill: ['Promise', 'Map', 'WeakMap', 'Set', 'Object.assign', 'Array.from', 'Array.prototype.fill'],
 
     // list of files / patterns to load in the browser
     files: [
+      'node_modules/zone.js/dist/zone.js',        
+      'node_modules/zone.js/dist/long-stack-trace-zone.js',
+      'node_modules/zone.js/dist/async-test.js',
+      'node_modules/zone.js/dist/fake-async-test.js',
+      'node_modules/zone.js/dist/sync-test.js',
+      'node_modules/zone.js/dist/proxy.js',
+      'node_modules/zone.js/dist/mocha-patch.js',
       './src/**/*.spec.ts'
     ],
 
