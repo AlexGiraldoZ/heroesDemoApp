@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, async, getTestBed, inject } from '@angular/core/testing';
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from "@angular/platform-browser-dynamic/testing";
-import { ApplicationInitStatus } from '@angular/core';
-import { Router } from "@angular/router";
+import { ApplicationInitStatus, InjectionToken } from '@angular/core';
+import { RouterModule, Router } from "@angular/router";
 import { 
   StoreModule, 
   Store, 
@@ -16,13 +16,16 @@ import { assert, expect } from "chai";
 import { after, before, describe, it } from "mocha";
 import { Observable } from "rxjs/Observable";
 import { IHeroInfo } from "../../models/heroe.model";
-import { HttpClient } from "@angular/common/http";
+import { HttpClientModule, HttpClient } from "@angular/common/http";
+import { AppModule } from "../../app.module"
 import { HeroesListComponent } from "./heroes-list.component";
 import { HeroesDataService } from "../../services/heroes-data.service";
 import * as fromReducers from "../../store/reducers/heroe.reducers";
 import { AppComponent } from "../../app.component";
 import { HeroesDetailsComponent } from "../heroes-details/heroes-details.component";
 import { MockBackend, MockConnection } from '@angular/http/testing';
+import { ReactiveFormsModule } from "@angular/forms";
+import { BrowserModule } from "@angular/platform-browser";
 
 describe("HeroesListComponent", () => {
   let heroesListComponent: HeroesListComponent;
@@ -44,43 +47,30 @@ describe("HeroesListComponent", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AppComponent, HeroesListComponent, HeroesDetailsComponent],
       imports: [
-        //HttpClient,
+        AppModule,
         StoreModule.forRoot({
           //'feature': combineReducers(fromReducers.reducer)
         }),
-        StoreModule.forFeature("heroes", fromReducers.reducer),
+         StoreModule.forFeature( "heroes", fromReducers.reducer ),
       ],
       providers: [
-         ApplicationInitStatus,
-         Store,
-         { provide: StateObservable, useValue: StoreModule},
-         ActionsSubject,
-         ReducerManager,
-         ReducerManagerDispatcher,
-        //HttpClient,
-        { provide: HeroesDataService, useValue: MockBackend },
-        //HeroesDataService
-       ]
+        { provide: ReducerManager }, 
+        { provide: ActionsSubject },
+        { provide: StateObservable },
+        Store,
+        ApplicationInitStatus,
+        { provide: HeroesDataService },
+       ],
+       declarations: [ HeroesListComponent ]
     });
 
     store = TestBed.get(Store);
-    sinon.stub(store, 'dispatch');
+    sinon.stub(store, 'dispatch').callThrough();
     fixture = TestBed.createComponent(HeroesListComponent);
     heroesListComponent = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  // beforeEach(() => {
-  //   TestBed.configureTestingModule({
-  //     declarations: [HeroesListComponent],
-  //     imports: [
-  //       StoreModule.forRoot({}),
-  //     ],
-  //     providers: [ApplicationInitStatus, Store, StateObservable]
-  //   }).compileComponents();
-  // });
 
   // beforeEach(() => {
   //   heroesListComponent = new HeroesListComponent(heroesDataService as any, store as any, router as any);
